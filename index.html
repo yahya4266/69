@@ -254,7 +254,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Theme notification styles */
         .theme-notification {
             position: fixed;
             top: 80px;
@@ -288,6 +287,57 @@
         .slide-out {
             animation: slideOutRight 0.3s ease-in;
         }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+            transition: width 0.5s ease;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .stat-badge.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .stat-badge.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .stat-badge.danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .broker-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -301,14 +351,25 @@
       <svg class="w-10 h-10" viewbox="0 0 50 50" fill="none"><rect x="5" y="15" width="18" height="30" fill="#3b82f6" rx="2" /> <rect x="27" y="10" width="18" height="35" fill="#1e3a8a" rx="2" /> <rect x="10" y="20" width="3" height="3" fill="white" /> <rect x="16" y="20" width="3" height="3" fill="white" /> <rect x="10" y="27" width="3" height="3" fill="white" /> <rect x="16" y="27" width="3" height="3" fill="white" /> <rect x="32" y="15" width="3" height="3" fill="white" /> <rect x="38" y="15" width="3" height="3" fill="white" /> <rect x="32" y="22" width="3" height="3" fill="white" /> <rect x="38" y="22" width="3" height="3" fill="white" />
       </svg><span id="nav-company-name" class="text-xl font-bold text-gray-800">شركة العقارات المتميزة</span>
      </div>
-     <div class="hidden md:flex gap-8"><span class="nav-link text-gray-700 hover:text-blue-600 font-medium active" data-page="home">الرئيسية</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="properties">العقارات</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="calculator">حاسبة القروض</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="locations">المواقع</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="about">من نحن</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="contact">تواصل معنا</span>
+     <div class="hidden md:flex gap-6 items-center"><span class="nav-link text-gray-700 hover:text-blue-600 font-medium active" data-page="home">الرئيسية</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="properties">العقارات</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="calculator">حاسبة القروض</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="locations">المواقع</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="about">من نحن</span> <span class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="contact">تواصل ����عنا</span>
+      <div class="h-6 w-px bg-gray-300"></div><button id="broker-login-btn" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition shadow-md">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+       </svg><span class="font-medium">دخول الوسطاء</span> </button> <button id="admin-login-btn" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition shadow-md">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+       </svg><span class="font-medium">دخول ��لمدير</span> </button>
      </div><button id="mobile-menu-btn" class="md:hidden text-gray-700">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg></button>
     </div>
    </div>
    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-    <div class="px-4 py-3 space-y-3"><span class="block nav-link text-gray-700 hover:text-blue-600 font-medium active" data-page="home">الرئيسية</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="properties">العقارات</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="calculator">حاسبة القروض</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="locations">المواقع</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="about">من نحن</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="contact">تواصل معنا</span>
+    <div class="px-4 py-3 space-y-3"><span class="block nav-link text-gray-700 hover:text-blue-600 font-medium active" data-page="home">الرئيسية</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="properties">العقارات</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="calculator">حاسبة القر��ض</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="locations">المواقع</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="about">من نحن</span> <span class="block nav-link text-gray-700 hover:text-blue-600 font-medium" data-page="contact">تواصل معنا</span>
+     <div class="pt-3 border-t space-y-2"><button id="broker-login-btn-mobile" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+       </svg><span class="font-medium">دخول الوسطاء</span> </button> <button id="admin-login-btn-mobile" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+       </svg><span class="font-medium">دخول المدير</span> </button>
+     </div>
     </div>
    </div>
   </nav><!-- Breadcrumb -->
@@ -316,6 +377,104 @@
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center gap-2 text-sm text-gray-600"><span class="nav-link cursor-pointer hover:text-blue-600" data-page="home">الرئيسية</span> <span id="breadcrumb-separator" class="hidden">←</span> <span id="breadcrumb-current" class="text-blue-600 font-medium"></span>
     </div>
+   </div>
+  </div><!-- Admin Login Modal -->
+  <div id="admin-login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+   <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative"><button id="close-admin-modal" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition">
+     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+     </svg></button>
+    <div class="text-center mb-8">
+     <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+     </div>
+     <h2 class="text-2xl font-bold text-gray-800 mb-2">تسجيل دخول المدير</h2>
+     <p class="text-gray-600">قم بتسجيل الدخول للوصول إلى لوحة الإدارة</p>
+    </div>
+    <form id="admin-login-form" class="space-y-6">
+     <div><label class="block text-gray-700 font-medium mb-2" for="admin-username">اسم المستخدم</label>
+      <div class="relative">
+       <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+       </div><input type="text" id="admin-username" class="w-full pr-10 pl-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition" placeholder="أدخل اسم المستخدم" required>
+      </div>
+     </div>
+     <div><label class="block text-gray-700 font-medium mb-2" for="admin-password">كلمة المرور</label>
+      <div class="relative">
+       <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+        </svg>
+       </div><input type="password" id="admin-password" class="w-full pr-10 pl-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition" placeholder="أدخل كلمة المرور" required>
+      </div>
+     </div>
+     <div id="admin-login-error" class="hidden bg-red-50 border-r-4 border-red-500 text-red-700 p-4 rounded">
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+       </svg><span>اسم المستخدم أو كلمة المرور غير صحيحة</span>
+      </div>
+     </div>
+     <div class="bg-purple-50 border-r-4 border-purple-500 p-4 rounded text-sm text-gray-700">
+      <div class="font-bold mb-1">
+       للتجربة استخدم:
+      </div>
+      <div>
+       اسم المستخدم: <span class="font-mono bg-white px-2 py-1 rounded">admin</span>
+      </div>
+      <div>
+       كلمة المرور: <span class="font-mono bg-white px-2 py-1 rounded">admin123</span>
+      </div>
+     </div><button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-lg font-bold hover:from-purple-700 hover:to-purple-800 transition shadow-md"> تسجيل الدخول </button>
+    </form>
+   </div>
+  </div><!-- Broker Login Modal -->
+  <div id="broker-login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+   <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative"><button id="close-login-modal" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition">
+     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+     </svg></button>
+    <div class="text-center mb-8">
+     <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+     </div>
+     <h2 class="text-2xl font-bold text-gray-800 mb-2">تسجيل دخول الوسطاء</h2>
+     <p class="text-gray-600">قم بتسجيل الدخول للوصول إلى لوحة التحكم</p>
+    </div>
+    <form id="broker-login-form" class="space-y-6">
+     <div><label class="block text-gray-700 font-medium mb-2" for="broker-username">اسم المستخدم</label>
+      <div class="relative">
+       <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+       </div><input type="text" id="broker-username" class="w-full pr-10 pl-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition" placeholder="أدخل اسم المستخدم" required>
+      </div>
+     </div>
+     <div><label class="block text-gray-700 font-medium mb-2" for="broker-password">كلمة المرور</label>
+      <div class="relative">
+       <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+       </div><input type="password" id="broker-password" class="w-full pr-10 pl-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition" placeholder="أدخل كلمة المرور" required>
+      </div>
+     </div>
+     <div id="login-error" class="hidden bg-red-50 border-r-4 border-red-500 text-red-700 p-4 rounded">
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+       </svg><span>اسم المستخدم أو كلمة المرور غير صحيحة</span>
+      </div>
+     </div>
+     <div class="bg-blue-50 border-r-4 border-blue-500 p-4 rounded text-sm text-gray-700">
+      <div class="font-bold mb-1">
+       للتجربة استخدم:
+      </div>
+      <div>
+       اسم المستخدم: <span class="font-mono bg-white px-2 py-1 rounded">broker</span>
+      </div>
+      <div>
+       كلمة المرور: <span class="font-mono bg-white px-2 py-1 rounded">123456</span>
+      </div>
+     </div><button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-bold hover:from-blue-700 hover:to-blue-800 transition shadow-md"> تسجيل الدخول </button>
+    </form>
    </div>
   </div><!-- Home Page -->
   <div id="home-page" class="page active"><!-- Hero Section -->
@@ -357,7 +516,7 @@
         500+
        </div>
        <div class="text-gray-200">
-        عقار متاح
+        ��قار متاح
        </div>
       </div>
       <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
@@ -381,7 +540,7 @@
         50+
        </div>
        <div class="text-gray-200">
-        مستشار عقاري
+        م����تشار عقار��
        </div>
       </div>
      </div>
@@ -401,7 +560,7 @@
        </div>
        <div class="p-6">
         <h3 class="text-xl font-bold text-gray-800 mb-2">فيلا فاخرة - الرياض</h3>
-        <p class="text-gray-600 mb-4">5 غرف نوم • 4 حمامات • 500 م²</p>
+        <p class="text-gray-600 mb-4">5 ��ر�� نوم • 4 حمامات • 500 ��²</p>
         <div class="flex justify-between items-center"><span class="text-2xl font-bold text-blue-600">2,500,000 ر.س</span> <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">التفاصيل</button>
         </div>
        </div>
@@ -441,7 +600,7 @@
     <div class="max-w-7xl mx-auto">
      <h1 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">جميع العقارات</h1><!-- Filters -->
      <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4"><select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option>نوع العقار</option> <option>فيلا</option> <option>شقة</option> <option>أرض</option> <option>مكتب</option> </select> <select id="city-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option value="">المدينة</option> <option value="الرياض">الرياض</option> <option value="جدة">جدة</option> <option value="الدمام">الدمام</option> <option value="مكة">مكة المكرمة</option> <option value="المدينة">المدينة المنورة</option> <option value="عسير">عسير</option> <option value="تبوك">تبوك</option> <option value="حائل">حائل</option> </select> <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option>نوع العرض</option> <option>للبيع</option> <option>للإيجار</option> </select> <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">بحث</button>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4"><select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option>نوع العقار</option> <option>فيلا</option> <option>شقة</option> <option>أرض</option> <option>مكتب</option> </select> <select id="city-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option value="">المدينة</option> <option value="الرياض">الرياض</option> <option value="جدة">جدة</option> <option value="الدمام">الدمام</option> <option value="مكة">مكة المكرمة</option> <option value="المدينة">المدينة المنورة</option> <option value="عسير">عسير</option> <option value="تب��ك">تبوك</option> <option value="حائل">حائل</option> </select> <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option>نوع العرض</option> <option>للبيع</option> <option>للإيجار</option> </select> <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">بحث</button>
       </div>
      </div><!-- Properties Grid -->
      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Property cards would be repeated here -->
@@ -492,7 +651,7 @@
   <div id="calculator-page" class="page">
    <section class="py-16 px-4 bg-gray-50">
     <div class="max-w-4xl mx-auto">
-     <h1 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">حاسبة القروض العقارية</h1>
+     <h1 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">��اسبة القروض العقارية</h1>
      <div class="bg-white rounded-lg shadow-lg p-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8"><!-- Calculator Form -->
        <div>
@@ -622,7 +781,7 @@
          <div class="property-item p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition">
           <h4 class="font-bold text-gray-800">أرض تجارية - الدمام</h4>
           <p class="text-sm text-gray-600">1000 م²</p>
-          <p class="text-lg font-bold text-blue-600">1,800,000 ر.س</p>
+          <p class="text-lg font-bold text-blue-600">1,800,000 ر.��</p>
          </div>
          <div class="property-item p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition">
           <h4 class="font-bold text-gray-800">مكتب إداري - الرياض</h4>
@@ -633,7 +792,7 @@
        </div><!-- Search by Location -->
        <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
         <h3 class="text-xl font-bold text-gray-800 mb-4">البحث بالموقع</h3>
-        <div class="space-y-4"><select id="location-city-filter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option value="">اختر المدينة</option> <option value="الرياض">الرياض</option> <option value="جدة">جدة</option> <option value="الدمام">الدمام</option> <option value="مكة">مكة المكرمة</option> <option value="المدينة">المدينة المنورة</option> <option value="عسير">عسير</option> <option value="تبوك">تبوك</option> <option value="حائل">حائل</option> </select> <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option>اختر الحي</option> <option>العليا</option> <option>الملقا</option> <option>النرجس</option> <option>الياسمين</option> </select> <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">بحث</button>
+        <div class="space-y-4"><select id="location-city-filter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option value="">اختر المدينة</option> <option value="الرياض">الرياض</option> <option value="جدة">جدة</option> <option value="الدمام">الدمام</option> <option value="مكة">مكة المكرمة</option> <option value="المدينة">المدينة المنورة</option> <option value="عسير">عسير</option> <option value="��بوك">تبوك</option> <option value="حائل">حائل</option> </select> <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"> <option>اختر الحي</option> <option>العليا</option> <option>الملقا</option> <option>النرجس</option> <option>الياسمين</option> </select> <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">بحث</button>
         </div>
        </div>
       </div>
@@ -649,8 +808,8 @@
       <div>
        <h2 class="text-3xl font-bold text-gray-800 mb-6">قصة الشركة</h2>
        <p class="text-gray-600 mb-4 leading-relaxed">تأسست شركتنا في عام 2008 برؤية واضحة: تقديم خدمات عقارية متميزة تلبي احتياجات عملائنا وتحقق طموحاتهم في الحصول على العقار المثالي.</p>
-       <p class="text-gray-600 mb-4 leading-relaxed">على مدار أكثر من 15 عاماً، نجحنا في بناء سمعة قوية في السوق العقاري السعودي من خلال الالتزام بأعلى معايير الجودة والشفافية في التعامل.</p>
-       <p class="text-gray-600 leading-relaxed">اليوم، نفخر بكوننا واحدة من الشركات الرائدة في مجال الوساطة العقارية، مع فريق من أكثر من 50 مستشار عقاري محترف.</p>
+       <p class="text-gray-600 mb-4 leading-relaxed">على مدار أكثر من 15 عاماً، نجحنا في بناء سمعة قوية في السوق العقاري السعودي من خلال ا��التزام بأعلى معايير الجودة والشفافية في التعامل.</p>
+       <p class="text-gray-600 leading-relaxed">اليوم، نفخر بكوننا واح��ة من الشركات الرائدة في مجال الوساطة العقارية، مع فريق من أكثر من 50 مستشار عقاري محترف.</p>
       </div>
       <div class="bg-blue-50 rounded-lg p-8">
        <svg class="w-full h-64" viewbox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#dbeafe" /> <rect x="50" y="50" width="300" height="200" fill="#93c5fd" rx="8" /> <rect x="80" y="80" width="80" height="60" fill="#60a5fa" /> <rect x="180" y="80" width="80" height="60" fill="#60a5fa" /> <rect x="280" y="80" width="80" height="60" fill="#60a5fa" /> <rect x="80" y="160" width="80" height="60" fill="#60a5fa" /> <rect x="180" y="160" width="80" height="60" fill="#60a5fa" /> <rect x="280" y="160" width="80" height="60" fill="#60a5fa" /> <text x="200" y="270" text-anchor="middle" class="text-sm font-bold" fill="#1e3a8a">
@@ -673,8 +832,8 @@
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
        </div>
-       <h3 class="text-xl font-bold text-gray-800 mb-3">الرسالة</h3>
-       <p id="mission-text" class="text-gray-600">تسهيل عمليات البيع والشراء والإيجار العقاري من خلال فريق محترف وخدمات عالية الجودة</p>
+       <h3 class="text-xl font-bold text-gray-800 mb-3">الرسال��</h3>
+       <p id="mission-text" class="text-gray-600">تسهيل عمليات البيع والشرا�� والإيجار العقاري من خلال ف��يق محترف وخدمات عالية الجودة</p>
       </div>
       <div class="text-center p-6 bg-blue-50 rounded-lg">
        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -692,7 +851,7 @@
         <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">👨‍💼</span>
         </div>
         <h4 class="font-bold text-gray-800">أحمد محمد</h4>
-        <p class="text-gray-600 text-sm">المدير العام</p>
+        <p class="text-gray-600 text-sm">ال��دير العام</p>
        </div>
        <div class="text-center">
         <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">👩‍💼</span>
@@ -710,7 +869,7 @@
         <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">👩‍⚖️</span>
         </div>
         <h4 class="font-bold text-gray-800">نورا سعد</h4>
-        <p class="text-gray-600 text-sm">المستشار القانوني</p>
+        <p class="text-gray-600 text-sm">المستشار ا��قانوني</p>
        </div>
       </div>
      </div><!-- Services -->
@@ -726,7 +885,7 @@
        <div class="bg-white p-6 rounded-lg shadow-md text-center card-hover border">
         <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-2xl">🔑</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">تأجير العقارات</h3>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">تأجير ا��عقارات</h3>
         <p class="text-gray-600 text-sm">إدارة كاملة لعمليات التأجير والصيانة</p>
        </div>
        <div class="bg-white p-6 rounded-lg shadow-md text-center card-hover border">
@@ -805,7 +964,7 @@
          </div>
          <div>
           <h4 class="font-bold text-gray-800 mb-1">العنوان</h4>
-          <p class="text-gray-600">شارع الملك فهد، حي العليا<br>
+          <p class="text-gray-600">��ارع الملك فهد، حي العليا<br>
            الرياض 12211، المملكة العربية السعودية</p>
          </div>
         </div>
@@ -830,339 +989,1326 @@
      </div>
     </div>
    </section>
+  </div><!-- Broker Dashboard Page -->
+  <div id="dashboard-page" class="page">
+   <section class="py-8 px-4 bg-gray-50 min-h-screen">
+    <div class="max-w-7xl mx-auto"><!-- Dashboard Header -->
+     <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-xl p-8 mb-8 text-white">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+       <div class="flex items-center gap-4">
+        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+         </svg>
+        </div>
+        <div>
+         <h1 class="text-3xl font-bold">مرحباً، <span id="broker-name">أحمد محمد</span></h1>
+         <p class="text-blue-100">وسيط عقاري معتمد</p>
+        </div>
+       </div><button id="logout-btn" class="flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-3 rounded-lg transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg><span class="font-medium">تسجيل الخروج</span> </button>
+      </div>
+     </div><!-- Statistics Cards -->
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-blue-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">إجمالي العقارات</p>
+         <h3 class="text-3xl font-bold text-gray-800">12</h3>
+        </div>
+        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4 flex items-center gap-1 text-sm"><span class="text-green-600 font-medium">+2</span> <span class="text-gray-600">هذا الشهر</span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-green-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">إجمالي المتابعين</p>
+         <h3 class="text-3xl font-bold text-gray-800">247</h3>
+        </div>
+        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4 flex items-center gap-1 text-sm"><span class="text-green-600 font-medium">+18</span> <span class="text-gray-600">هذا الأسبوع</span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-yellow-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">المهتمين</p>
+         <h3 class="text-3xl font-bold text-gray-800">34</h3>
+        </div>
+        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4 flex items-center gap-1 text-sm"><span class="text-green-600 font-medium">+5</span> <span class="text-gray-600">اليوم</span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-purple-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">المبيعات المكتملة</p>
+         <h3 class="text-3xl font-bold text-gray-800">8</h3>
+        </div>
+        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4 flex items-center gap-1 text-sm"><span class="text-green-600 font-medium">+1</span> <span class="text-gray-600">هذا الشهر</span>
+       </div>
+      </div>
+     </div><!-- Properties Management -->
+     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+       <h2 class="text-2xl font-bold text-gray-800">عقاراتي</h2><button class="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg><span>إضافة عقار جديد</span> </button>
+      </div><!-- Properties Table -->
+      <div class="overflow-x-auto">
+       <table class="w-full">
+        <thead>
+         <tr class="border-b-2 border-gray-200">
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">العقار</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">النوع</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">السعر</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">المتابعين</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">المهتمين</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">الحالة</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">الإجراءات</th>
+         </tr>
+        </thead>
+        <tbody id="properties-table-body">
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+             <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+             </svg>
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">فيلا فاخرة</p>
+             <p class="text-sm text-gray-600">الرياض - حي العليا</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">للبيع</span></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">2,500,000 ر.س</p></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg><span class="text-gray-700 font-medium">42</span>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg><span class="text-gray-700 font-medium">8</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button> <button class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition" title="حذف">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+             <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+             </svg>
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">شقة عصرية</p>
+             <p class="text-sm text-gray-600">جدة - حي الزهراء</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">للإيجار</span></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">45,000 ر.س/سنة</p></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg><span class="text-gray-700 font-medium">28</span>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg><span class="text-gray-700 font-medium">5</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button> <button class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition" title="حذف">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+             <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+             </svg>
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">مكتب تجاري</p>
+             <p class="text-sm text-gray-600">الدمام - الكورنيش</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">للبيع</span></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">850,000 ر.س</p></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg><span class="text-gray-700 font-medium">15</span>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg><span class="text-gray-700 font-medium">3</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">قيد المراجعة</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button> <button class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition" title="حذف">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+             </svg></button>
+           </div></td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div><!-- Performance Chart -->
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="bg-white rounded-xl shadow-md p-6">
+       <h3 class="text-xl font-bold text-gray-800 mb-4">الأداء الشهري</h3>
+       <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 h-64 flex items-center justify-center">
+        <div class="text-center">
+         <svg class="w-16 h-16 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+         </svg>
+         <p class="text-gray-600">الرسم البياني للأداء</p>
+         <p class="text-sm text-gray-500 mt-2">+15% نمو هذا الشهر</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6">
+       <h3 class="text-xl font-bold text-gray-800 mb-4">أحدث الاستفسارات</h3>
+       <div class="space-y-4">
+        <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+         <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-lg">👤</span>
+         </div>
+         <div class="flex-1">
+          <p class="font-bold text-gray-800">محمد عبدالله</p>
+          <p class="text-sm text-gray-600">مهتم بـ فيلا فاخرة - الرياض</p>
+          <p class="text-xs text-gray-500 mt-1">منذ ساعة واحدة</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+         <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-lg">👤</span>
+         </div>
+         <div class="flex-1">
+          <p class="font-bold text-gray-800">سار�� أحمد</p>
+          <p class="text-sm text-gray-600">استفسار عن شقة عصرية - جدة</p>
+          <p class="text-xs text-gray-500 mt-1">منذ 3 ساعات</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+         <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-lg">👤</span>
+         </div>
+         <div class="flex-1">
+          <p class="font-bold text-gray-800">خالد محمد</p>
+          <p class="text-sm text-gray-600">��ريد معاينة مكتب تجاري - الدمام</p>
+          <p class="text-xs text-gray-500 mt-1">��نذ 5 ساعات</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div><!-- Admin Dashboard Page -->
+  <div id="admin-dashboard-page" class="page">
+   <section class="py-8 px-4 bg-gray-50 min-h-screen">
+    <div class="max-w-7xl mx-auto"><!-- Admin Header -->
+     <div class="bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl shadow-xl p-8 mb-8 text-white">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+       <div class="flex items-center gap-4">
+        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+         </svg>
+        </div>
+        <div>
+         <h1 class="text-3xl font-bold">لوحة تحكم المدير</h1>
+         <p class="text-purple-100">إدارة الوسطاء والأداء العام</p>
+        </div>
+       </div><button id="admin-logout-btn" class="flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-3 rounded-lg transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg><span class="font-medium">تسجيل الخروج</span> </button>
+      </div>
+     </div><!-- Overall Statistics -->
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-purple-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">إجمالي الوسطاء</p>
+         <h3 class="text-3xl font-bold text-gray-800">8</h3>
+        </div>
+        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4"><span class="stat-badge success"> <span>↑</span> <span>+2 هذا الشه��</span> </span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-blue-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">إجمالي العقارات</p>
+         <h3 class="text-3xl font-bold text-gray-800">124</h3>
+        </div>
+        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4"><span class="stat-badge success"> <span>↑</span> <span>+15 هذا الشهر</span> </span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-green-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">إجمالي المبيعات</p>
+         <h3 class="text-3xl font-bold text-gray-800">42</h3>
+        </div>
+        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4"><span class="stat-badge success"> <span>↑</span> <span>+8 هذا الشهر</span> </span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-yellow-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">إجمالي الإيرادات</p>
+         <h3 class="text-2xl font-bold text-gray-800">4.2M</h3>
+        </div>
+        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4"><span class="stat-badge success"> <span>↑</span> <span>+12% هذا الشهر</span> </span>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-red-500">
+       <div class="flex items-center justify-between">
+        <div>
+         <p class="text-gray-600 text-sm mb-1">معدل التحويل</p>
+         <h3 class="text-3xl font-bold text-gray-800">34%</h3>
+        </div>
+        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+         </svg>
+        </div>
+       </div>
+       <div class="mt-4"><span class="stat-badge success"> <span>↑</span> <span>+5% هذا الشهر</span> </span>
+       </div>
+      </div>
+     </div><!-- Brokers Performance Table -->
+     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+       <h2 class="text-2xl font-bold text-gray-800">أداء الوسطاء</h2>
+       <div class="flex gap-3"><select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600"> <option>��ميع الوسطاء</option> <option>الوسطاء النشطون</option> <option>الوسطاء الجدد</option> <option>الأفضل أداءً</option> </select> <button class="flex items-center gap-2 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+         </svg><span>إضافة وسيط</span> </button>
+       </div>
+      </div>
+      <div class="overflow-x-auto">
+       <table class="w-full">
+        <thead>
+         <tr class="border-b-2 border-gray-200">
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">الوسيط</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">العقارات</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">��لمبيعات</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">الإيرادات</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">معدل النجاح</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">التقييم</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">الحالة</th>
+          <th class="text-right py-4 px-4 text-gray-700 font-bold">الإجراءات</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar">
+             أ
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">أحمد محمد</p>
+             <p class="text-sm text-gray-600">��نذ 3 سنوات</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">12</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 75%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">8</p><p class="text-xs text-gray-600">هذا الشهر: 2</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">850K</p><span class="stat-badge success text-xs"> <span>↑ 15%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-green-600">67%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-green-500" style="width: 67%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.8</span> <span class="text-xs text-gray-600">(42)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+             ف
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">فاطمة أحمد</p>
+             <p class="text-sm text-gray-600">منذ 2 سنتين</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">18</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 90%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">11</p><p class="text-xs text-gray-600">هذا الشهر: 3</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">1.2M</p><span class="stat-badge success text-xs"> <span>↑ 22%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-green-600">61%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-green-500" style="width: 61%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.9</span> <span class="text-xs text-gray-600">(58)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+             م
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">محمد علي</p>
+             <p class="text-sm text-gray-600">منذ سنة ونصف</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">9</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 45%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">5</p><p class="text-xs text-gray-600">هذا الشهر: 1</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">620K</p><span class="stat-badge success text-xs"> <span>↑ 8%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-yellow-600">56%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-yellow-500" style="width: 56%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.6</span> <span class="text-xs text-gray-600">(28)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+             س
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">سارة عبدالله</p>
+             <p class="text-sm text-gray-600">منذ سنة</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">14</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 70%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">7</p><p class="text-xs text-gray-600">هذا الشهر: 2</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">780K</p><span class="stat-badge success text-xs"> <span>↑ 18%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-green-600">50%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-green-500" style="width: 50%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.7</span> <span class="text-xs text-gray-600">(35)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+             خ
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">خالد حسن</p>
+             <p class="text-sm text-gray-600">منذ 8 أشهر</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">6</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 30%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">3</p><p class="text-xs text-gray-600">هذا الشهر: 1</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">420K</p><span class="stat-badge success text-xs"> <span>↑ 12%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-yellow-600">50%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-yellow-500" style="width: 50%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.5</span> <span class="text-xs text-gray-600">(18)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+             ن
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">نورا سالم</p>
+             <p class="text-sm text-gray-600">منذ 5 أشهر</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">4</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 20%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">2</p><p class="text-xs text-gray-600">هذا الشهر: 0</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">280K</p><span class="stat-badge warning text-xs"> <span>→ 0%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-green-600">50%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-green-500" style="width: 50%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.4</span> <span class="text-xs text-gray-600">(12)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">نشط</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+         <tr class="border-b border-gray-100 hover:bg-gray-50">
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-3">
+            <div class="broker-avatar" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+             ه
+            </div>
+            <div>
+             <p class="font-bold text-gray-800">هدى يوسف</p>
+             <p class="text-sm text-gray-600">منذ 3 أشهر</p>
+            </div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">3</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 15%;"></div>
+           </div></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">1</p><p class="text-xs text-gray-600">هذا الشهر: 0</p></td>
+          <td class="py-4 px-4"><p class="font-bold text-gray-800">150K</p><span class="stat-badge success text-xs"> <span>↑ 5%</span> </span></td>
+          <td class="py-4 px-4"><p class="font-bold text-yellow-600">33%</p>
+           <div class="progress-bar mt-2">
+            <div class="progress-fill bg-yellow-500" style="width: 33%;"></div>
+           </div></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.6</span> <span class="text-xs text-gray-600">(8)</span>
+           </div></td>
+          <td class="py-4 px-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">جديد</span></td>
+          <td class="py-4 px-4">
+           <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+             </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+             </svg></button>
+           </div></td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </div>
+   </section>
   </div><!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8 px-4">
-   <div class="max-w-7xl mx-auto text-center">
-    <p class="text-gray-400">© 2024 <span id="footer-company-name">شركة العقارات المتميزة</span>. جميع الحقوق محفوظة.</p>
-    <div class="flex justify-center gap-6 mt-4"><a href="#" class="text-gray-400 hover:text-white transition">سياسة الخصوصية</a> <a href="#" class="text-gray-400 hover:text-white transition">الشروط والأحكام</a> <a href="#" class="text-gray-400 hover:text-white transition">خريطة الموقع</a>
+  <footer class="bg-gray-900 text-white py-12 px-4">
+   <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+     <div>
+      <div class="flex items-center gap-3 mb-4">
+       <svg class="w-10 h-10" viewbox="0 0 50 50" fill="none"><rect x="5" y="15" width="18" height="30" fill="#3b82f6" rx="2" /> <rect x="27" y="10" width="18" height="35" fill="#1e3a8a" rx="2" />
+       </svg><span class="text-xl font-bold">شركة العقارات المتميزة</span>
+      </div>
+      <p class="text-gray-400 text-sm">وساطة عقارية موثوقة وخدمات متميزة في جميع أنحاء المملكة</p>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+      <ul class="space-y-2">
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="home">الرئيسية</span></li>
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="properties">العقارات</span></li>
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="calculator">حاسبة القروض</span></li>
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="locations">المواقع</span></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">خدماتنا</h3>
+      <ul class="space-y-2 text-gray-400 text-sm">
+       <li>بيع العقارات</li>
+       <li>تأجير العقارات</li>
+       <li>استشارات عقارية</li>
+       <li>إدارة الممتلكات</li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">تواصل معنا</h3>
+      <ul class="space-y-2 text-gray-400 text-sm">
+       <li>📞 +966 50 123 4567</li>
+       <li>📧 info@realestate.com</li>
+       <li>📍 الرياض، المملكة العربية السعودية</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+     <p>© 2024 شركة العقارات المتميزة. جميع الحقوق محفوظة.</p>
     </div>
    </div>
   </footer>
   <script>
-        // City color themes inspired by Saudi regions
-        const cityThemes = {
-            'الرياض': {
-                background: "#0f172a",
-                primary: "#22c55e",
-                secondary: "#fbbf24",
-                accent: "#f97316",
-                name: "ألوان العاصمة"
-            },
-            'جدة': {
-                background: "#1e1b4b",
-                primary: "#3b82f6",
-                secondary: "#f59e0b",
-                accent: "#06b6d4",
-                name: "ألوان البحر الأحمر"
-            },
-            'الدمام': {
-                background: "#064e3b",
-                primary: "#10b981",
-                secondary: "#eab308",
-                accent: "#14b8a6",
-                name: "ألوان الخليج العربي"
-            },
-            'مكة': {
-                background: "#451a03",
-                primary: "#a16207",
-                secondary: "#fbbf24",
-                accent: "#f59e0b",
-                name: "ألوان الحرم المكي"
-            },
-            'المدينة': {
-                background: "#1e3a8a",
-                primary: "#60a5fa",
-                secondary: "#34d399",
-                accent: "#a78bfa",
-                name: "ألوان المسجد النبوي"
-            },
-            'عسير': {
-                background: "#14532d",
-                primary: "#22c55e",
-                secondary: "#ef4444",
-                accent: "#a3a3a3",
-                name: "ألوان الجبال الخضراء"
-            },
-            'تبوك': {
-                background: "#9a3412",
-                primary: "#fb923c",
-                secondary: "#0ea5e9",
-                accent: "#facc15",
-                name: "ألوان الصحراء والواحات"
-            },
-            'حائل': {
-                background: "#581c87",
-                primary: "#a855f7",
-                secondary: "#f59e0b",
-                accent: "#c084fc",
-                name: "ألوان جبال أجا وسلمى"
-            }
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+        const breadcrumbSeparator = document.getElementById('breadcrumb-separator');
+
+        const pageNames = {
+            'home': 'الرئيسية',
+            'properties': 'العقارات',
+            'calculator': 'حاسبة القروض',
+            'locations': 'المواقع',
+            'about': 'من نحن',
+            'contact': 'تواصل معنا',
+            'dashboard': 'لوحة التحكم',
+            'admin-dashboard': 'لوحة تحكم المدير'
         };
 
-        let currentPage = 'home';
+        function showPage(pageName) {
+            pages.forEach(page => page.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active'));
 
-        // Helper function to determine if a color is light or dark
-        function isLightColor(color) {
-            const hex = color.replace('#', '');
-            const r = parseInt(hex.substr(0, 2), 16);
-            const g = parseInt(hex.substr(2, 2), 16);
-            const b = parseInt(hex.substr(4, 2), 16);
-            const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-            return brightness > 128;
-        }
-
-        function applyColorTheme(theme) {
-            const getContrastingTextColor = (bgColor) => {
-                return isLightColor(bgColor) ? '#1f2937' : '#ffffff';
-            };
-
-            // Apply hero gradient
-            const heroSection = document.querySelector('.hero-gradient');
-            if (heroSection) {
-                heroSection.style.background = `linear-gradient(135deg, ${theme.background} 0%, ${theme.primary}40 25%, ${theme.secondary}40 50%, ${theme.accent}40 75%, ${theme.background}80 100%)`;
-                
-                const heroTitle = heroSection.querySelector('#hero-title');
-                const heroSubtitle = heroSection.querySelector('#hero-subtitle');
-                if (heroTitle) heroTitle.style.color = '#ffffff';
-                if (heroSubtitle) heroSubtitle.style.color = '#f1f5f9';
-                
-                const shapes = heroSection.querySelectorAll('.geometric-shape');
-                shapes.forEach((shape, index) => {
-                    const colors = [theme.primary, theme.secondary, theme.accent, theme.primary, theme.secondary];
-                    shape.style.color = colors[index % colors.length];
-                });
-            }
-
-            // Update stats section
-            const statsSection = document.querySelector('section[style*="linear-gradient(135deg, #1e293b"]');
-            if (statsSection) {
-                statsSection.style.background = `linear-gradient(135deg, ${theme.background} 0%, ${theme.primary}80 50%, ${theme.secondary}80 100%)`;
-                
-                const statsCards = statsSection.querySelectorAll('.bg-white\\/10');
-                statsCards.forEach(card => {
-                    const statNumber = card.querySelector('.text-4xl');
-                    const statLabel = card.querySelector('.text-gray-200');
-                    if (statNumber) statNumber.style.color = '#ffffff';
-                    if (statLabel) statLabel.style.color = '#e2e8f0';
-                });
-            }
-
-            // Update featured properties section
-            const propertiesSection = document.querySelector('section[style*="linear-gradient(135deg, #4b5563"]');
-            if (propertiesSection) {
-                propertiesSection.style.background = `linear-gradient(135deg, ${theme.primary}60 0%, ${theme.secondary}60 50%, ${theme.accent}60 100%)`;
-                
-                const sectionTitle = propertiesSection.querySelector('.section-title');
-                if (sectionTitle) sectionTitle.style.color = '#ffffff';
-            }
-
-            // Update primary buttons
-            const primaryElements = document.querySelectorAll('.bg-blue-600');
-            primaryElements.forEach(el => {
-                el.style.backgroundColor = theme.primary;
-                el.style.color = getContrastingTextColor(theme.primary);
-            });
-
-            const primaryTextElements = document.querySelectorAll('.text-blue-600');
-            primaryTextElements.forEach(el => {
-                el.style.color = theme.primary;
-            });
-        }
-
-        function applyCityTheme(cityName) {
-            const theme = cityThemes[cityName];
-            if (!theme) return;
-
-            showThemeNotification(theme.name);
-            applyColorTheme(theme);
-        }
-
-        function showThemeNotification(themeName) {
-            const existingNotification = document.querySelector('.theme-notification');
-            if (existingNotification) {
-                existingNotification.remove();
-            }
-
-            const notification = document.createElement('div');
-            notification.className = 'theme-notification bg-white border-r-4 border-green-500 shadow-lg p-4 rounded-lg';
-            notification.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="font-bold text-gray-800">تم تطبيق ${themeName}</div>
-                        <div class="text-sm text-gray-600">تم تغيير ألوان الموقع بنجاح</div>
-                    </div>
-                </div>
-            `;
-
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.classList.add('slide-out');
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-
-        // Page navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(pageId + '-page');
+            const targetPage = document.getElementById(`${pageName}-page`);
             if (targetPage) {
                 targetPage.classList.add('active');
                 targetPage.classList.add('fade-in');
-                setTimeout(() => targetPage.classList.remove('fade-in'), 500);
             }
-            
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            document.querySelectorAll(`[data-page="${pageId}"]`).forEach(link => {
-                link.classList.add('active');
-            });
-            
-            updateBreadcrumb(pageId);
-            currentPage = pageId;
-            document.getElementById('mobile-menu').classList.add('hidden');
-        }
 
-        function updateBreadcrumb(pageId) {
-            const pageNames = {
-                'home': 'الرئيسية',
-                'properties': 'العقارات',
-                'calculator': 'حاسبة القروض',
-                'locations': 'المواقع',
-                'about': 'من نحن',
-                'contact': 'تواصل معنا'
-            };
-            
-            const separator = document.getElementById('breadcrumb-separator');
-            const current = document.getElementById('breadcrumb-current');
-            
-            if (pageId === 'home') {
-                separator.classList.add('hidden');
-                current.textContent = '';
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+
+            if (pageName === 'home') {
+                breadcrumbSeparator.classList.add('hidden');
+                breadcrumbCurrent.textContent = '';
             } else {
-                separator.classList.remove('hidden');
-                current.textContent = pageNames[pageId] || '';
+                breadcrumbSeparator.classList.remove('hidden');
+                breadcrumbCurrent.textContent = pageNames[pageName] || pageName;
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
             }
         }
 
-        // Event listeners
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const pageId = this.getAttribute('data-page');
-                if (pageId) {
-                    showPage(pageId);
+                const pageName = link.dataset.page;
+                if (pageName) {
+                    showPage(pageName);
                 }
             });
         });
 
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Calculator functionality
-        function calculateLoan() {
-            const propertyPrice = parseFloat(document.getElementById('property-price').value) || 0;
-            const downPaymentPercent = parseFloat(document.getElementById('down-payment').value) || 0;
-            const loanTermYears = parseFloat(document.getElementById('loan-term').value) || 25;
-            const interestRate = parseFloat(document.getElementById('interest-rate').value) || 4.5;
-
-            const downPaymentAmount = (propertyPrice * downPaymentPercent) / 100;
-            const loanAmount = propertyPrice - downPaymentAmount;
-            const monthlyRate = interestRate / 100 / 12;
-            const numberOfPayments = loanTermYears * 12;
-
-            let monthlyPayment = 0;
-            if (monthlyRate > 0) {
-                monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
-                                (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-            } else {
-                monthlyPayment = loanAmount / numberOfPayments;
-            }
-
-            const totalPayments = monthlyPayment * numberOfPayments;
-            const totalInterest = totalPayments - loanAmount;
-
-            document.getElementById('down-payment-amount').textContent = downPaymentAmount.toLocaleString('ar-SA');
-            document.getElementById('monthly-payment').textContent = Math.round(monthlyPayment).toLocaleString('ar-SA') + ' ر.س';
-            document.getElementById('loan-amount').textContent = loanAmount.toLocaleString('ar-SA') + ' ر.س';
-            document.getElementById('total-payments').textContent = Math.round(totalPayments).toLocaleString('ar-SA') + ' ر.س';
-            document.getElementById('total-interest').textContent = Math.round(totalInterest).toLocaleString('ar-SA') + ' ر.س';
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
         }
 
-        document.getElementById('calculate-btn').addEventListener('click', calculateLoan);
-        document.getElementById('property-price').addEventListener('input', calculateLoan);
-        document.getElementById('down-payment').addEventListener('input', calculateLoan);
-        document.getElementById('loan-term').addEventListener('change', calculateLoan);
-        document.getElementById('interest-rate').addEventListener('input', calculateLoan);
+        // Broker Login Modal
+        const brokerLoginBtn = document.getElementById('broker-login-btn');
+        const brokerLoginBtnMobile = document.getElementById('broker-login-btn-mobile');
+        const brokerLoginModal = document.getElementById('broker-login-modal');
+        const closeLoginModal = document.getElementById('close-login-modal');
+        const brokerLoginForm = document.getElementById('broker-login-form');
+        const loginError = document.getElementById('login-error');
 
-        // Map pins interaction
-        document.querySelectorAll('.map-pin').forEach(pin => {
-            pin.addEventListener('click', function() {
-                const propertyName = this.getAttribute('data-property');
-                const tooltip = document.createElement('div');
-                tooltip.className = 'absolute bg-white p-2 rounded shadow-lg text-sm font-bold text-gray-800 z-10';
-                tooltip.style.top = '-40px';
-                tooltip.style.right = '50%';
-                tooltip.style.transform = 'translateX(50%)';
-                tooltip.textContent = propertyName;
+        function openBrokerLoginModal() {
+            brokerLoginModal.classList.remove('hidden');
+        }
+
+        function closeBrokerLoginModal() {
+            brokerLoginModal.classList.add('hidden');
+            loginError.classList.add('hidden');
+            brokerLoginForm.reset();
+        }
+
+        if (brokerLoginBtn) {
+            brokerLoginBtn.addEventListener('click', openBrokerLoginModal);
+        }
+
+        if (brokerLoginBtnMobile) {
+            brokerLoginBtnMobile.addEventListener('click', openBrokerLoginModal);
+        }
+
+        if (closeLoginModal) {
+            closeLoginModal.addEventListener('click', closeBrokerLoginModal);
+        }
+
+        if (brokerLoginModal) {
+            brokerLoginModal.addEventListener('click', (e) => {
+                if (e.target === brokerLoginModal) {
+                    closeBrokerLoginModal();
+                }
+            });
+        }
+
+        if (brokerLoginForm) {
+            brokerLoginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
                 
-                this.appendChild(tooltip);
+                const username = document.getElementById('broker-username').value;
+                const password = document.getElementById('broker-password').value;
+
+                if (username === 'broker' && password === '123456') {
+                    closeBrokerLoginModal();
+                    showPage('dashboard');
+                } else {
+                    loginError.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Admin Login Modal
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const adminLoginBtnMobile = document.getElementById('admin-login-btn-mobile');
+        const adminLoginModal = document.getElementById('admin-login-modal');
+        const closeAdminModal = document.getElementById('close-admin-modal');
+        const adminLoginForm = document.getElementById('admin-login-form');
+        const adminLoginError = document.getElementById('admin-login-error');
+
+        function openAdminLoginModal() {
+            adminLoginModal.classList.remove('hidden');
+        }
+
+        function closeAdminLoginModal() {
+            adminLoginModal.classList.add('hidden');
+            adminLoginError.classList.add('hidden');
+            adminLoginForm.reset();
+        }
+
+        if (adminLoginBtn) {
+            adminLoginBtn.addEventListener('click', openAdminLoginModal);
+        }
+
+        if (adminLoginBtnMobile) {
+            adminLoginBtnMobile.addEventListener('click', openAdminLoginModal);
+        }
+
+        if (closeAdminModal) {
+            closeAdminModal.addEventListener('click', closeAdminLoginModal);
+        }
+
+        if (adminLoginModal) {
+            adminLoginModal.addEventListener('click', (e) => {
+                if (e.target === adminLoginModal) {
+                    closeAdminLoginModal();
+                }
+            });
+        }
+
+        if (adminLoginForm) {
+            adminLoginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('admin-username').value;
+                const password = document.getElementById('admin-password').value;
+
+                if (username === 'admin' && password === 'admin123') {
+                    closeAdminLoginModal();
+                    showPage('admin-dashboard');
+                } else {
+                    adminLoginError.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                showPage('home');
+            });
+        }
+
+        const adminLogoutBtn = document.getElementById('admin-logout-btn');
+        if (adminLogoutBtn) {
+            adminLogoutBtn.addEventListener('click', () => {
+                showPage('home');
+            });
+        }
+
+        // Calculator functionality
+        const calculateBtn = document.getElementById('calculate-btn');
+        const propertyPriceInput = document.getElementById('property-price');
+        const downPaymentInput = document.getElementById('down-payment');
+        const downPaymentAmount = document.getElementById('down-payment-amount');
+        const loanTermSelect = document.getElementById('loan-term');
+        const interestRateInput = document.getElementById('interest-rate');
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function updateDownPaymentAmount() {
+            const price = parseFloat(propertyPriceInput.value) || 0;
+            const percentage = parseFloat(downPaymentInput.value) || 0;
+            const amount = (price * percentage) / 100;
+            downPaymentAmount.textContent = formatNumber(Math.round(amount));
+        }
+
+        if (downPaymentInput) {
+            downPaymentInput.addEventListener('input', updateDownPaymentAmount);
+        }
+
+        if (propertyPriceInput) {
+            propertyPriceInput.addEventListener('input', updateDownPaymentAmount);
+        }
+
+        if (calculateBtn) {
+            calculateBtn.addEventListener('click', () => {
+                const price = parseFloat(propertyPriceInput.value) || 0;
+                const downPaymentPercent = parseFloat(downPaymentInput.value) || 0;
+                const downPayment = (price * downPaymentPercent) / 100;
+                const loanAmount = price - downPayment;
+                const years = parseInt(loanTermSelect.value) || 25;
+                const annualRate = parseFloat(interestRateInput.value) || 4.5;
+                
+                const monthlyRate = annualRate / 100 / 12;
+                const numberOfPayments = years * 12;
+                
+                const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+                                      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+                
+                const totalPayments = monthlyPayment * numberOfPayments;
+                const totalInterest = totalPayments - loanAmount;
+
+                document.getElementById('monthly-payment').textContent = formatNumber(Math.round(monthlyPayment)) + ' ر.س';
+                document.getElementById('loan-amount').textContent = formatNumber(Math.round(loanAmount)) + ' ر.س';
+                document.getElementById('total-payments').textContent = formatNumber(Math.round(totalPayments)) + ' ر.س';
+                document.getElementById('total-interest').textContent = formatNumber(Math.round(totalInterest)) + ' ر.س';
+            });
+        }
+
+        // Contact form
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                formMessage.classList.add('bg-green-100', 'text-green-700');
+                formMessage.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+                
+                contactForm.reset();
                 
                 setTimeout(() => {
-                    if (tooltip.parentNode) {
-                        tooltip.parentNode.removeChild(tooltip);
-                    }
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            });
+        }
+
+        // Map pins interaction
+        const mapPins = document.querySelectorAll('.map-pin');
+        mapPins.forEach(pin => {
+            pin.addEventListener('click', () => {
+                const propertyName = pin.dataset.property;
+                const notification = document.createElement('div');
+                notification.className = 'theme-notification bg-white rounded-lg shadow-xl p-4 max-w-sm';
+                notification.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">${propertyName}</h4>
+                            <p class="text-sm text-gray-600">انقر لعرض المزيد من التفاصيل</p>
+                        </div>
+                        <button class="text-gray-400 hover:text-gray-600" onclick="this.parentElement.parentElement.remove()">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('slide-out');
+                    setTimeout(() => notification.remove(), 300);
                 }, 3000);
             });
         });
 
-        // Contact form
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const messageDiv = document.getElementById('form-message');
-            messageDiv.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
-            messageDiv.className = 'p-3 rounded-lg text-center bg-green-100 text-green-800';
-            messageDiv.classList.remove('hidden');
-            this.reset();
-            
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-            }, 5000);
-        });
-
-        // City filter event listeners
-        document.getElementById('city-filter').addEventListener('change', function() {
-            const selectedCity = this.value;
-            if (selectedCity && cityThemes[selectedCity]) {
-                applyCityTheme(selectedCity);
-            }
-        });
-
-        document.getElementById('location-city-filter').addEventListener('change', function() {
-            const selectedCity = this.value;
-            if (selectedCity && cityThemes[selectedCity]) {
-                applyCityTheme(selectedCity);
-            }
-        });
-
-        // Initialize calculator
-        calculateLoan();
+        // Initialize
+        updateDownPaymentAmount();
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ba5b95e330bbec8',t:'MTc2NzgxMjcwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+    </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+    </svg></button>
+  </div>
+  <div class="flex items-center gap-3">
+   <div class="broker-avatar" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+    ع
+   </div>
+   <div>
+    <p class="font-bold text-gray-800">عبدالرحمن صالح</p>
+    <p class="text-sm text-gray-600">منذ شهرين</p>
+   </div>
+  </div>
+  <p class="font-bold text-gray-800">2</p>
+  <div class="progress-bar mt-2">
+   <div class="progress-fill" style="width: 10%;"></div>
+  </div>
+  <p class="font-bold text-gray-800">0</p>
+  <p class="text-xs text-gray-600">هذا الشهر: 0</p>
+  <p class="font-bold text-gray-800">0</p><span class="stat-badge warning text-xs"> <span>→ 0%</span> </span>
+  <p class="font-bold text-red-600">0%</p>
+  <div class="progress-bar mt-2">
+   <div class="progress-fill bg-red-500" style="width: 0%;"></div>
+  </div>
+  <div class="flex items-center gap-1"><span class="text-yellow-500">⭐</span> <span class="font-bold text-gray-800">4.3</span> <span class="text-xs text-gray-600">(4)</span>
+  </div> <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">جديد</span>
+  <div class="flex items-center gap-2"><button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="عرض التفاصيل">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+    </svg></button> <button class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition" title="تعديل">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+    </svg></button>
+  </div> <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 px-4">
+   <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+     <div>
+      <div class="flex items-center gap-3 mb-4">
+       <svg class="w-10 h-10" viewbox="0 0 50 50" fill="none"><rect x="5" y="15" width="18" height="30" fill="#3b82f6" rx="2" /> <rect x="27" y="10" width="18" height="35" fill="#1e3a8a" rx="2" />
+       </svg><span class="text-xl font-bold">شركة العقارات المتميزة</span>
+      </div>
+      <p class="text-gray-400 text-sm">وساطة عقارية موثوقة وخدمات متميزة في جميع أنحاء المملكة</p>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+      <ul class="space-y-2">
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="home">الرئيسية</span></li>
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="properties">العقارات</span></li>
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="calculator">حاسبة القروض</span></li>
+       <li><span class="nav-link text-gray-400 hover:text-white cursor-pointer transition" data-page="locations">المواقع</span></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">خدماتنا</h3>
+      <ul class="space-y-2 text-gray-400 text-sm">
+       <li>بيع العقارات</li>
+       <li>تأجير العقارات</li>
+       <li>استشارات عقارية</li>
+       <li>إدارة الممتلكات</li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">تواصل معنا</h3>
+      <ul class="space-y-2 text-gray-400 text-sm">
+       <li>📞 +966 50 123 4567</li>
+       <li>📧 info@realestate.com</li>
+       <li>📍 الرياض، المملكة العربية السعودية</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+     <p>© 2024 شركة العقارات المتميزة. جميع الحقوق محفوظة.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+        const breadcrumbSeparator = document.getElementById('breadcrumb-separator');
+
+        const pageNames = {
+            'home': 'الرئيسية',
+            'properties': 'العقارات',
+            'calculator': 'حاسبة القروض',
+            'locations': 'المواقع',
+            'about': 'من نحن',
+            'contact': 'تواصل معنا',
+            'dashboard': 'لوحة التحكم',
+            'admin-dashboard': 'لوحة تحكم المدير'
+        };
+
+        function showPage(pageName) {
+            pages.forEach(page => page.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const targetPage = document.getElementById(`${pageName}-page`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                targetPage.classList.add('fade-in');
+            }
+
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+
+            if (pageName === 'home') {
+                breadcrumbSeparator.classList.add('hidden');
+                breadcrumbCurrent.textContent = '';
+            } else {
+                breadcrumbSeparator.classList.remove('hidden');
+                breadcrumbCurrent.textContent = pageNames[pageName] || pageName;
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageName = link.dataset.page;
+                if (pageName) {
+                    showPage(pageName);
+                }
+            });
+        });
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Broker Login Modal
+        const brokerLoginBtn = document.getElementById('broker-login-btn');
+        const brokerLoginBtnMobile = document.getElementById('broker-login-btn-mobile');
+        const brokerLoginModal = document.getElementById('broker-login-modal');
+        const closeLoginModal = document.getElementById('close-login-modal');
+        const brokerLoginForm = document.getElementById('broker-login-form');
+        const loginError = document.getElementById('login-error');
+
+        function openBrokerLoginModal() {
+            brokerLoginModal.classList.remove('hidden');
+        }
+
+        function closeBrokerLoginModal() {
+            brokerLoginModal.classList.add('hidden');
+            loginError.classList.add('hidden');
+            brokerLoginForm.reset();
+        }
+
+        if (brokerLoginBtn) {
+            brokerLoginBtn.addEventListener('click', openBrokerLoginModal);
+        }
+
+        if (brokerLoginBtnMobile) {
+            brokerLoginBtnMobile.addEventListener('click', openBrokerLoginModal);
+        }
+
+        if (closeLoginModal) {
+            closeLoginModal.addEventListener('click', closeBrokerLoginModal);
+        }
+
+        if (brokerLoginModal) {
+            brokerLoginModal.addEventListener('click', (e) => {
+                if (e.target === brokerLoginModal) {
+                    closeBrokerLoginModal();
+                }
+            });
+        }
+
+        if (brokerLoginForm) {
+            brokerLoginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('broker-username').value;
+                const password = document.getElementById('broker-password').value;
+
+                if (username === 'broker' && password === '123456') {
+                    closeBrokerLoginModal();
+                    showPage('dashboard');
+                } else {
+                    loginError.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Admin Login Modal
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const adminLoginBtnMobile = document.getElementById('admin-login-btn-mobile');
+        const adminLoginModal = document.getElementById('admin-login-modal');
+        const closeAdminModal = document.getElementById('close-admin-modal');
+        const adminLoginForm = document.getElementById('admin-login-form');
+        const adminLoginError = document.getElementById('admin-login-error');
+
+        function openAdminLoginModal() {
+            adminLoginModal.classList.remove('hidden');
+        }
+
+        function closeAdminLoginModal() {
+            adminLoginModal.classList.add('hidden');
+            adminLoginError.classList.add('hidden');
+            adminLoginForm.reset();
+        }
+
+        if (adminLoginBtn) {
+            adminLoginBtn.addEventListener('click', openAdminLoginModal);
+        }
+
+        if (adminLoginBtnMobile) {
+            adminLoginBtnMobile.addEventListener('click', openAdminLoginModal);
+        }
+
+        if (closeAdminModal) {
+            closeAdminModal.addEventListener('click', closeAdminLoginModal);
+        }
+
+        if (adminLoginModal) {
+            adminLoginModal.addEventListener('click', (e) => {
+                if (e.target === adminLoginModal) {
+                    closeAdminLoginModal();
+                }
+            });
+        }
+
+        if (adminLoginForm) {
+            adminLoginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('admin-username').value;
+                const password = document.getElementById('admin-password').value;
+
+                if (username === 'admin' && password === 'admin123') {
+                    closeAdminLoginModal();
+                    showPage('admin-dashboard');
+                } else {
+                    adminLoginError.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                showPage('home');
+            });
+        }
+
+        const adminLogoutBtn = document.getElementById('admin-logout-btn');
+        if (adminLogoutBtn) {
+            adminLogoutBtn.addEventListener('click', () => {
+                showPage('home');
+            });
+        }
+
+        // Calculator functionality
+        const calculateBtn = document.getElementById('calculate-btn');
+        const propertyPriceInput = document.getElementById('property-price');
+        const downPaymentInput = document.getElementById('down-payment');
+        const downPaymentAmount = document.getElementById('down-payment-amount');
+        const loanTermSelect = document.getElementById('loan-term');
+        const interestRateInput = document.getElementById('interest-rate');
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function updateDownPaymentAmount() {
+            const price = parseFloat(propertyPriceInput.value) || 0;
+            const percentage = parseFloat(downPaymentInput.value) || 0;
+            const amount = (price * percentage) / 100;
+            downPaymentAmount.textContent = formatNumber(Math.round(amount));
+        }
+
+        if (downPaymentInput) {
+            downPaymentInput.addEventListener('input', updateDownPaymentAmount);
+        }
+
+        if (propertyPriceInput) {
+            propertyPriceInput.addEventListener('input', updateDownPaymentAmount);
+        }
+
+        if (calculateBtn) {
+            calculateBtn.addEventListener('click', () => {
+                const price = parseFloat(propertyPriceInput.value) || 0;
+                const downPaymentPercent = parseFloat(downPaymentInput.value) || 0;
+                const downPayment = (price * downPaymentPercent) / 100;
+                const loanAmount = price - downPayment;
+                const years = parseInt(loanTermSelect.value) || 25;
+                const annualRate = parseFloat(interestRateInput.value) || 4.5;
+                
+                const monthlyRate = annualRate / 100 / 12;
+                const numberOfPayments = years * 12;
+                
+                const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+                                      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+                
+                const totalPayments = monthlyPayment * numberOfPayments;
+                const totalInterest = totalPayments - loanAmount;
+
+                document.getElementById('monthly-payment').textContent = formatNumber(Math.round(monthlyPayment)) + ' ر.س';
+                document.getElementById('loan-amount').textContent = formatNumber(Math.round(loanAmount)) + ' ر.س';
+                document.getElementById('total-payments').textContent = formatNumber(Math.round(totalPayments)) + ' ر.س';
+                document.getElementById('total-interest').textContent = formatNumber(Math.round(totalInterest)) + ' ر.س';
+            });
+        }
+
+        // Contact form
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                formMessage.classList.add('bg-green-100', 'text-green-700');
+                formMessage.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+                
+                contactForm.reset();
+                
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            });
+        }
+
+        // Map pins interaction
+        const mapPins = document.querySelectorAll('.map-pin');
+        mapPins.forEach(pin => {
+            pin.addEventListener('click', () => {
+                const propertyName = pin.dataset.property;
+                const notification = document.createElement('div');
+                notification.className = 'theme-notification bg-white rounded-lg shadow-xl p-4 max-w-sm';
+                notification.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">${propertyName}</h4>
+                            <p class="text-sm text-gray-600">انقر لعرض المزيد من التفاصيل</p>
+                        </div>
+                        <button class="text-gray-400 hover:text-gray-600" onclick="this.parentElement.parentElement.remove()">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('slide-out');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            });
+        });
+
+        // Initialize
+        updateDownPaymentAmount();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bb48b1500c7ef2f',t:'MTc2Nzk2ODA5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
